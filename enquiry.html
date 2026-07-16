@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mad House Creations | Enquiry</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .enquiry-page {
+            padding: 140px 0 80px;
+            min-height: calc(100vh - 100px);
+            position: relative;
+            overflow: hidden;
+        }
+        .video-modal{display: none;}
+        .enquiry-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1150px;
+            height: 620px;
+            background: url('images/hero.png') center top / contain no-repeat;
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .enquiry-page .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: none;
+            padding: 0 8%;
+        }
+
+        .enquiry-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.95fr;
+            gap: 40px;
+            align-items: center;
+            /* top align items */
+            align-content: start;
+        }
+
+        .enquiry-hero {
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .enquiry-hero .section-tag {
+            color: var(--primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .enquiry-hero h1 {
+            font-size: 64px;
+            line-height: 1.05;
+            margin: 0;
+            max-width: 720px;
+        }
+
+        .enquiry-hero p {
+            color: #c6c6c6;
+            line-height: 1.9;
+            max-width: 600px;
+            font-size: 17px;
+        }
+
+        .feature-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 24px;
+        }
+
+        .feature-card {
+            display: flex;
+            gap: 16px;
+            padding: 20px 22px;
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 24px;
+            align-items: flex-start;
+        }
+
+        .feature-card i {
+            font-size: 24px;
+            color: var(--primary);
+            min-width: 42px;
+            min-height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,123,0,.12);
+            border-radius: 14px;
+        }
+
+        .feature-card h3 {
+            margin: 0 0 6px;
+            font-size: 18px;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: #bdbdbd;
+            font-size: 14px;
+            line-height: 1.75;
+        }
+
+        .enquiry-form-card {
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 32px;
+            padding: 42px;
+            box-shadow: 0 40px 110px rgba(0,0,0,.35);
+            margin-top: 100px;
+        }
+
+        .enquiry-form-card .card-head {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .enquiry-form-card .card-head i {
+            width: 54px;
+            height: 54px;
+            border-radius: 18px;
+            background: rgba(255,123,0,.12);
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .enquiry-form-card .card-head h2 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .enquiry-form-card .card-head p {
+            margin: 6px 0 0;
+            color: #bdbdbd;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .enquiry-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .enquiry-form input,
+        .enquiry-form select,
+        .enquiry-form textarea {
+            width: 100%;
+            padding: 18px 20px;
+            border-radius: 20px;
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.08);
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+        }
+        .enquiry-form textarea{
+            width: 205%;
+           
+        }
+
+        .enquiry-form textarea {
+           
+            
+            resize: none;
+        }
+
+        .enquiry-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #c6c6c6;
+        }
+
+        .enquiry-form .form-group {
+            display: grid;
+            gap: 8px;
+        }
+
+        .enquiry-form .btn-submit {
+            grid-column: 1 / -1;
+            padding: 18px 0;
+            border-radius: 20px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary), #ff5200);
+            color: #fff;
+            cursor: pointer;
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        .enquiry-form .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 35px rgba(255,123,0,.3);
+        }
+
+        .enquiry-contact-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .contact-mini-card {
+            padding: 20px 22px;
+            background: rgba(255,255,255,.02);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 24px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .contact-mini-card i {
+            font-size: 22px;
+            color: var(--primary);
+        }
+
+        .contact-mini-card h4 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .contact-mini-card p,
+        .contact-mini-card a {
+            margin: 0;
+            color: #bdbdbd;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 1120px) {
+            .enquiry-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .enquiry-form {
+                grid-template-columns: 1fr;
+            }
+
+            .enquiry-contact-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .enquiry-page {
+                padding: 120px 25px 60px;
+            }
+
+            .enquiry-hero h1 {
+                font-size: 46px;
+            }
+
+            .feature-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        option{
+            color: #000;
+        }
+        .enquiry-page{
+            margin-top: -120px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="loader">
+        <span></span>
+    </div>
+
+    <header>
+        <div class="logo">
+            <img src="images/Logo.png" alt="Mad House Creations Logo">
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="courses.html">Courses</a>
+            <a href="showreel.html">Showreel</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="enquiry.html" class="btn">Enquire Now</a>
+    </header>
+
+    <section class="enquiry-page">
+        <div class="container enquiry-grid">
+            <div class="hero-left">
+                <span class="subtitle">ENQUIRE NOW</span>
+                <h1>Take The First Step Toward Your Creative Career.</h1>
+                <p>Have questions about our courses, admissions, or career opportunities? Fill out the form and our team will connect with you shortly.</p>
+
+                <div class="feature-row">
+                    <div class="feature-card">
+                        <i class="ri-star-line"></i>
+                        <div>
+                            <h3>Expert Guidance</h3>
+                            <p>Get personalized career advice from industry mentors.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <i class="ri-tv-2-line"></i>
+                        <div>
+                            <h3>Industry Relevant</h3>
+                            <p>Future-ready skills and real-world project training.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <i class="ri-customer-service-2-line"></i>
+                        <div>
+                            <h3>100% Support</h3>
+                            <p>We’re here to help you through every step of your journey.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <i class="ri-rocket-line"></i>
+                        <div>
+                            <h3>Creative Future</h3>
+                            <p>Turn your passion into a professional career path.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="enquiry-form-card">
+                <div class="card-head">
+                    <i class="ri-send-plane-line"></i>
+                    <div>
+                        <h2>Enquire Now</h2>
+                        <p>Fill out the form below and we'll get back to you shortly.</p>
+                    </div>
+                </div>
+
+                <form class="enquiry-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="course">Course Interested In</label>
+                        <select id="course" name="course">
+                            <option value="">Select a course</option>
+                            <option value="Nex-Gen 3D & VFX">Nex-Gen 3D & VFX</option>
+                            <option value="Content Creation for Digital Platforms">Content Creation for Digital Platforms</option>
+                            <option value="Content Creation for UI Design">Content Creation for UI Design</option>
+                            <option value="Creative Content, Motion Design & Digital Branding">Creative Content, Motion Design & Digital Branding</option>
+                            <option value="Advance Animation Program">Advance Animation Program</option>
+                            <option value="Professional VFX Program">Professional VFX Program</option>
+                            <option value="Creative Media Prime – Animation, VFX & Gaming">Creative Media Prime – Animation, VFX & Gaming</option>
+                            <option value="Creative Media Prime – Animation & VFX">Creative Media Prime – Animation & VFX</option>
+                            <option value="Professional Compositing & Editing Program">Professional Compositing & Editing Program</option>
+                            <option value="Web Design, Development & Digital Creativity">Web Design, Development & Digital Creativity</option>
+                            <option value="Print Media, Design & Publishing">Print Media, Design & Publishing</option>
+                            <option value="Web Design">Web Design</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea rows="2" id="message" name="message" placeholder="Write your message"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Submit Enquiry</button>
+                </form>
+
+             
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h2>Mad House Creations</h2>
+                <p>Animation • VFX • Gaming • Graphic Design</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="showreel.html">Showreel</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- <div>
+                <h3>Courses</h3>
+                <ul>
+                    <li>Animation</li>
+                    <li>VFX</li>
+                    <li>Gaming</li>
+                    <li>Graphic Design</li>
+                    <li>Video Editing</li>
+                </ul>
+            </div> -->
+            <div>
+                <h3>Contact</h3>
+                <p>+91 9918100092</p>
+                <p>+91 7275208939</p>
+                <div class="social-footer">
+                    <a href="#"><i class="ri-instagram-line"></i></a>
+                    <a href="#"><i class="ri-youtube-fill"></i></a>
+                    <a href="#"><i class="ri-facebook-fill"></i></a>
+                    <a href="#"><i class="ri-linkedin-fill"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Mad House Creations. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>

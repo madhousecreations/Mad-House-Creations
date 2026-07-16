@@ -6,13 +6,11 @@ window.addEventListener("load", () => {
 
     const loader = document.querySelector(".loader");
 
+    if (!loader) return;
+
     setTimeout(() => {
-
-        loader.style.opacity = "0";
-
-        loader.style.visibility = "hidden";
-
-    }, 800);
+        loader.classList.add("loader-hidden");
+    }, 400);
 
 });
 
@@ -327,6 +325,71 @@ document.querySelectorAll(".btn").forEach(button => {
     });
 
 });
+
+const videoModal = document.createElement('div');
+videoModal.classList.add('video-modal');
+videoModal.innerHTML = `
+    <div class="video-modal-backdrop"></div>
+    <div class="video-modal-content">
+        <button class="video-modal-close"><i class="ri-close-line"></i></button>
+        <video controls></video>
+    </div>
+`;
+document.body.appendChild(videoModal);
+
+const modalBackdrop = videoModal.querySelector('.video-modal-backdrop');
+const modalClose = videoModal.querySelector('.video-modal-close');
+const modalVideo = videoModal.querySelector('video');
+
+function openVideoModal(src) {
+    modalVideo.src = src;
+    modalVideo.play();
+    videoModal.classList.add('open');
+}
+
+function closeVideoModal() {
+    modalVideo.pause();
+    modalVideo.currentTime = 0;
+    modalVideo.src = '';
+    videoModal.classList.remove('open');
+}
+
+modalBackdrop.addEventListener('click', closeVideoModal);
+modalClose.addEventListener('click', closeVideoModal);
+
+document.querySelectorAll('.video-thumb, .btn-watch, .play-circle').forEach(el => {
+    el.addEventListener('click', e => {
+        e.preventDefault();
+        const videoSrc = el.dataset.video;
+        if (videoSrc) {
+            openVideoModal(videoSrc);
+        }
+    });
+});
+
+const enquiryForm = document.querySelector('.enquiry-form');
+if (enquiryForm) {
+    enquiryForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = enquiryForm.querySelector('#name').value.trim();
+        const email = enquiryForm.querySelector('#email').value.trim();
+        const phone = enquiryForm.querySelector('#phone').value.trim();
+        const course = enquiryForm.querySelector('#course').value.trim();
+        const message = enquiryForm.querySelector('#message').value.trim();
+
+        if (!name || !email || !phone || !course) {
+            alert('Please fill in your name, email, phone and course interested in.');
+            return;
+        }
+
+        const subject = `New Enquiry from ${name}`;
+        const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0ACourse: ${course}%0D%0AMessage: ${message}`;
+        const mailtoLink = `mailto:info@madhousecreations.in?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+        window.location.href = mailtoLink;
+    });
+}
 
 
 /*=================================

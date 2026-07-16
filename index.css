@@ -51,7 +51,13 @@ body{
     justify-content:center;
     align-items:center;
     z-index:9999;
+    transition: opacity .4s ease, visibility .4s ease;
+}
 
+.loader.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .loader span{
@@ -1400,11 +1406,12 @@ footer{
 
 .footer-grid{
     display:grid;
-    grid-template-columns:1.6fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap:32px;
     align-items:start;
     max-width:1320px;
     margin:auto;
+    place-items:center;
 }
 
 .footer-grid h2{
@@ -1412,6 +1419,7 @@ footer{
     margin-bottom:12px;
     color:#fff;
 }
+
 
 .footer-grid h3{
     color:var(--primary);
