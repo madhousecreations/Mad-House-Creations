@@ -391,6 +391,22 @@ if (enquiryForm) {
     });
 }
 
+const opacityRange = document.getElementById("background-opacity-range");
+const heroSection = document.querySelector(".course-details-hero");
+const opacityValue = document.querySelector(".hero-opacity-control .opacity-value");
+
+if (opacityRange && heroSection) {
+    const updateHeroOpacity = () => {
+        const value = opacityRange.value;
+        heroSection.style.setProperty("--hero-bg-opacity", value / 100);
+        if (opacityValue) {
+            opacityValue.textContent = `${value}%`;
+        }
+    };
+
+    updateHeroOpacity();
+    opacityRange.addEventListener("input", updateHeroOpacity);
+}
 
 /*=================================
         CONSOLE MESSAGE
