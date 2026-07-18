@@ -367,29 +367,6 @@ document.querySelectorAll('.video-thumb, .btn-watch, .play-circle').forEach(el =
     });
 });
 
-const enquiryForm = document.querySelector('.enquiry-form');
-if (enquiryForm) {
-    enquiryForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const name = enquiryForm.querySelector('#name').value.trim();
-        const email = enquiryForm.querySelector('#email').value.trim();
-        const phone = enquiryForm.querySelector('#phone').value.trim();
-        const course = enquiryForm.querySelector('#course').value.trim();
-        const message = enquiryForm.querySelector('#message').value.trim();
-
-        if (!name || !email || !phone || !course) {
-            alert('Please fill in your name, email, phone and course interested in.');
-            return;
-        }
-
-        const subject = `New Enquiry from ${name}`;
-        const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0ACourse: ${course}%0D%0AMessage: ${message}`;
-        const mailtoLink = `mailto:info@madhousecreations.in?subject=${encodeURIComponent(subject)}&body=${body}`;
-
-        window.location.href = mailtoLink;
-    });
-}
 
 const opacityRange = document.getElementById("background-opacity-range");
 const heroSection = document.querySelector(".course-details-hero");
