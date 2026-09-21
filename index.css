@@ -875,6 +875,26 @@ transition:.7s;
 
 }
 
+.btn .ripple{
+
+position:absolute;
+border-radius:50%;
+background:rgba(255,255,255,.35);
+pointer-events:none;
+transform:scale(0);
+animation:ripple-effect .6s linear;
+
+}
+
+@keyframes ripple-effect{
+
+to{
+transform:scale(2);
+opacity:0;
+}
+
+}
+
 .btn:hover::before{
 
 left:120%;
